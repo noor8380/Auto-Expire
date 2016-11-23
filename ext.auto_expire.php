@@ -147,7 +147,7 @@ class Auto_expire_ext
     
     foreach($channel_query->result() as $row) {
       
-      $statuses = $this->EE->db->query("SELECT status_id as id, status as name FROM exp_statuses s NATURAL JOIN exp_status_groups sg NATURAL JOIN exp_channels c WHERE c.channel_id = ".$row->channel_id);      
+      $statuses = $this->EE->db->query("SELECT status_id as id, status as name FROM exp_statuses s NATURAL JOIN exp_status_groups sg NATURAL JOIN exp_channels c WHERE  c.status_group=sg.group_id AND c.channel_id = ".$row->channel_id);
             
       $expire = $this->_fetch_preferences($row->channel_id);
       
